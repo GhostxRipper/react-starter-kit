@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://127.0.0.1:3000',
     'webpack/hot/only-dev-server',
     'babel-polyfill',
     './hotReload.js'
@@ -23,7 +23,8 @@ module.exports = {
     quiet: true,
     historyApiFallback: true,
     contentBase: resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: '/',
+    port: 3000,
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
