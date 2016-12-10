@@ -5,10 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://127.0.0.1:3000',
+    'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
-    'babel-polyfill',
-    './hotReload.js'
+    resolve(__dirname, 'hotReload'),
   ],
   output: {
     filename: 'bundle.js',
@@ -24,7 +23,6 @@ module.exports = {
     historyApiFallback: true,
     contentBase: resolve(__dirname, 'dist'),
     publicPath: '/',
-    port: 3000,
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
@@ -43,6 +41,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new HtmlWebpackPlugin({template: './index.html', inject: false}),
+    new HtmlWebpackPlugin({template: './index.html'}),
   ],
 };

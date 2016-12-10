@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 /* eslint-enable*/
 
-import App from './components/App'
+import { App } from './src'
 
 const render = () => {
   ReactDOM.render(
@@ -19,5 +19,5 @@ const render = () => {
 render()
 
 if (module.hot) {
-  module.hot.accept('./components/App', render)
+  module.hot.accept('./src', render)
 }

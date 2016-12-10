@@ -6,8 +6,8 @@
   "author": "GhostxRipper <yann_ams@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.dev",
-    "build:prod": "webpack -p --config webpack.config.prod"
+    "start": "webpack-dev-server --open --config webpack.config.dev",
+    "build:prod": "rm -rf dist && webpack -p --config webpack.config.prod"
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0",

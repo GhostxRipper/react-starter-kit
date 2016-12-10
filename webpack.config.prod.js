@@ -3,11 +3,21 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: [
-    './src/index.js'
-  ],
+  entry: {
+    main: resolve(__dirname, 'src'),
+    vendor: [
+      'babel-polyfill',
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'redux',
+      'redux-thunk',
+      'styled-components',
+    ]
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
     path: resolve(__dirname, 'dist'),
     publicPath: '/'
   },
@@ -20,14 +30,16 @@ module.exports = {
         loaders: [
           'babel-loader',
         ],
-        exclude: /node_modules/
+        include: resolve(__dirname, 'src'),
+        exclude: /node_modules/,
       },
     ],
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false, compress: { warnings: false }}),
-    new HtmlWebpackPlugin({template: './src/index.html, inject: false'}),
-  ]
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor', 'main'],
+    }),
+    new HtmlWebpackPlugin({template: 'src/index.html'}),
+  ],
 };
