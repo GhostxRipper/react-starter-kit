@@ -20,7 +20,13 @@ export const App = () => (
         <Match exactly pattern="/" component={Home} />
         <Match exactly pattern="/yolo" render={() => (<div>Yolo</div>)} />
         <Match exactly pattern="/toto" render={() => (<div>Toto</div>)} />
-        <Miss render={({ location }) => (<div>Nothing matched {location.pathname}.</div>)} />
+        <Miss
+          render={({ location }) => (
+            <div>
+              Nothing matched
+              <pre style={{ display: 'inline' }}>{location.pathname}</pre>.
+            </div>)}
+        />
       </div>
     </Router>
   </Provider>
