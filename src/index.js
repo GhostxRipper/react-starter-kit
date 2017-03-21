@@ -1,35 +1,26 @@
-import 'babel-polyfill'
+import Offline from 'offline-plugin/runtime'
 import React from 'react'
-import { render } from 'react-dom'
-import { BrowserRouter as Router, Match, Miss, Link } from 'react-router'
 import { Provider } from 'react-redux'
+import { render } from 'react-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import { store } from './store'
 
 import Home from './components/Home'
+import { Body } from './components/Styled'
 
-export const App = () => (
+if (process.env.NODE_ENV === 'production') Offline.install()
+
+export const Root = () => (
   <Provider store={store}>
-    <Router>
-      <div>
-        <ul>
-          <li><Link to="/yolo">Yolo</Link></li>
-          <li><Link to="/toto">Toto</Link></li>
-        </ul>
-        <hr />
-        <Match exactly pattern="/" component={Home} />
-        <Match exactly pattern="/yolo" render={() => (<div>Yolo</div>)} />
-        <Match exactly pattern="/toto" render={() => (<div>Toto</div>)} />
-        <Miss
-          render={({ location }) => (
-            <div>
-              Nothing matched
-              <pre style={{ display: 'inline' }}>{location.pathname}</pre>.
-            </div>)}
-        />
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Body>
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </Body>
+    </BrowserRouter>
   </Provider>
 )
 
-if (!module.hot) render(<App />, document.getElementById('app'))
+if (!module.hot) render(<Root />, document.querySelector('react'))

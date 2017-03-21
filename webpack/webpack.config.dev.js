@@ -11,36 +11,33 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    path: resolve(__dirname, 'dist'),
-    publicPath: '/'
+    path: resolve(__dirname),
+    publicPath: '/',
   },
-  context: resolve(__dirname, 'src'),
+  context: resolve(__dirname, '../examples'),
   devtool: 'inline-source-map',
   devServer: {
     hot: true,
-    inline: true,
-    quiet: true,
-    historyApiFallback: true,
-    contentBase: resolve(__dirname, 'dist'),
+    contentBase: resolve(__dirname, '../assets'),
     publicPath: '/',
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
+    historyApiFallback: true,
   },
   module: {
-    loaders: [
-      { test: /\.jsx?$/,
-        loaders: [
-          'babel-loader',
-        ],
-        // include: resolve(__dirname, 'src'),
-        exclude: /node_modules/,
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        include: [resolve(__dirname, '../src'), resolve(__dirname)],
+        use: 'babel-loader',
       },
     ],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new HtmlWebpackPlugin({template: './index.html'}),
+    new HtmlWebpackPlugin({
+      title: 'redux-react-starter',
+      template: '../webpack/template.html',
+    }),
   ],
-};
+  performance: { hints: false },
+}

@@ -1,0 +1,15 @@
+{
+  "name": "React-starter-kit",
+  "short_name": "React",
+  "lang": "en-GB",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#FFFFF",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "960x960",
+      "type": "image/png"
+    }
+  ]
+}
