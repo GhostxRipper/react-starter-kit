@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: [
-    'react-hot-loader/patch',
     'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
     resolve(__dirname, 'hotReload'),
@@ -25,7 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         include: [resolve(__dirname, '../src'), resolve(__dirname)],
         use: 'babel-loader',
       },

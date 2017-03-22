@@ -38,3 +38,7 @@ export const Button = styled.button`
     color: lightgray;
   }
 `
+export const Body = styled.div`
+  margin: 0;
+  padding: 0;
+`
